@@ -1,9 +1,9 @@
 import "./NewAreaForm.scss";
 import axios from "axios";
-import { useState, useRef, useEffect } from "react";
-import { publish } from "../../pubsub";
+import { useState, useRef } from "react";
 import CloseButton from "../CloseButton/CloseButton";
 import { useNavigate } from "react-router-dom";
+import { validateDiscount, validateName, validateWeekDay, validateWeekend } from "../../helpers/validateForm";
 
 const NewAreaForm = () => {
   const navigate = useNavigate();
@@ -41,27 +41,10 @@ const NewAreaForm = () => {
 
     const { name, weekdayRate, weekendRate, discount } = formData;
 
-    if (!name.trim() || typeof name !== "string") {
-      formErrors.name = "Name is required and must be a valid string.";
-    }
-
-    const weekdayRateNum = Number(weekdayRate);
-    const weekendRateNum = Number(weekendRate);
-
-    if (!weekdayRate.trim() || isNaN(weekdayRateNum) || weekdayRateNum <= 0) {
-      formErrors.weekdayRate =
-        "Please enter a valid weekday rate (must be a number greater than 0).";
-    }
-
-    if (!weekendRate.trim() || isNaN(weekendRateNum) || weekendRateNum <= 0) {
-      formErrors.weekendRate =
-        "Please enter a valid weekend rate (must be a number greater than 0).";
-    }
-
-    if (discount && (isNaN(Number(discount)) || Number(discount) < 0)) {
-      formErrors.discount =
-        "Discount must be a number greater than or equal to 0 if provided.";
-    }
+    formErrors.name = validateName(name);
+    formErrors.weekdayRate = validateWeekDay(weekdayRate)
+    formErrors.weekendRate = validateWeekend(weekendRate);
+    formErrors.discount = validateDiscount(discount);
 
     if (
       formErrors.name ||
@@ -75,7 +58,6 @@ const NewAreaForm = () => {
 
     try {
       const response = await axios.post("/api/parking-areas", formData);
-      publish("parkingAreaCreated", formData);
       console.log("Parking area added:", response.data);
       setSuccessMessage("Park area created!");
       setTimeout(() => {
@@ -86,14 +68,6 @@ const NewAreaForm = () => {
       console.error("Error adding parking area:", error);
     }
   };
-
-  const scrollToForm = () => {
-    formRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  useEffect(() => {
-    scrollToForm();
-  });
 
   return (
     <div ref={formRef} className="newAreaForm">

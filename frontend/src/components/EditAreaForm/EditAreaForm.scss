@@ -8,7 +8,6 @@
   padding: 1.25rem;
   border-radius: 8px;
   background-color: vars.$primary-color;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   
   input {
     margin-bottom: 0.75rem;
@@ -22,6 +21,12 @@
       outline: none;
       border-color: vars.$bright-blue-hover;
     }
+  }
+
+  .error {
+    color: vars.$bright-red;
+    font-size: 0.85rem;
+    margin-top: -0.25rem;
   }
 
   .buttonContainer {
