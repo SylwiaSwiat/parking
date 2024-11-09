@@ -3,7 +3,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ParkingArea from "../ParkingArea/ParkingArea";
 import CreateNewAreaButton from "../CreateNewAreaButton/CreateNewAreaButton";
-import { subscribe, unsubscribe } from "../../pubsub";
 import CalculateButton from "../CalculateButton/CalculateButton";
 
 export interface ParkingAreaType {
@@ -17,28 +16,17 @@ export interface ParkingAreaType {
 const ParkingAreasList = () => {
   const [parkingAreas, setParkingAreas] = useState<ParkingAreaType[]>([]);
 
-  const handleParkingAreaCreation = () => {
+  useEffect(() => {
     axios.get("/api/parking-areas").then((res) => {
-      console.log(res);
-
       setParkingAreas(res.data);
     });
-  };
-
-  useEffect(() => {
-    handleParkingAreaCreation();
-    subscribe("parkingAreaCreated", handleParkingAreaCreation);
-
-    return () => {
-      unsubscribe("parkingAreaCreated", handleParkingAreaCreation);
-    };
   }, []);
 
   return (
     <div className="parkingAreasListContainer">
       <h1>Parking Areas</h1>
       <div className="parkingAreasList">
-        {parkingAreas &&
+        {parkingAreas.length > 0 &&
           parkingAreas.map((el) => (
             <ParkingArea
               key={el.id}
