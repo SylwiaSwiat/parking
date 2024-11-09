@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ParkingAreas from "./components/ParkingAreasList/ParkingAreasList";
 import PaymentCalculator from "./components/PaymentCalculator/PaymentCalculator";
