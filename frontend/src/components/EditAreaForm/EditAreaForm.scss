@@ -1,0 +1,60 @@
+@use "../../variables.scss" as vars;
+
+.editForm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: -1.25rem 0 0;
+  padding: 1.25rem;
+  border-radius: 8px;
+  background-color: vars.$primary-color;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+  input {
+    margin-bottom: 0.75rem;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid vars.$input-color;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+      outline: none;
+      border-color: vars.$bright-blue-hover;
+    }
+  }
+
+  .buttonContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+
+    button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:first-of-type {
+        background-color: vars.$bright-blue;
+        color: vars.$pure-white;
+
+        &:hover {
+          background-color: vars.$bright-blue-hover;
+        }
+      }
+
+      &:last-of-type {
+        background-color: vars.$input-color;
+        color: vars.$dark-gray;
+
+        &:hover {
+          background-color: vars.$light-gray;
+        }
+      }
+    }
+  }
+}

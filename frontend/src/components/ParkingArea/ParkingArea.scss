@@ -1,0 +1,112 @@
+@use "../../variables.scss" as vars;
+@use "../../animations.scss" as *;
+
+.parkingAreaContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.25rem;
+  border-radius: 8px;
+  max-width: 800px;
+  margin: 0 auto;
+  background: vars.$pure-white;
+  box-shadow: 0 1px 5px 0 vars.$blue-shadow-color;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  width: calc(100% - 2rem);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.5s ease-out forwards;
+
+  .header {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    width: 100%;
+
+    h2 {
+      font-weight: bold;
+      font-size: 1.25rem;
+      color: vars.$name-color;
+      margin: 0.25rem 0;
+    }
+  }
+
+  .wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+
+    p {
+      margin: 0.25rem 0;
+      color: vars.$dark-gray;
+      font-size: 1rem;
+      display: flex;
+
+      &:nth-child(2),
+      &:nth-child(3) {
+        color: vars.$dark-gray;
+      }
+    }
+
+    .discount {
+      font-weight: bold;
+    }
+  }
+
+  .buttonsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    column-gap: 0.5rem;
+    width: 100%;
+
+    .deleteButton,
+    .editButton {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      color: vars.$pure-white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .deleteButton {
+      background-color: vars.$bright-red;
+
+      &:hover {
+        background-color: vars.$bright-red-hover;
+      }
+    }
+
+    .editButton {
+      background-color: vars.$bright-blue;
+
+      &:hover {
+        background-color: vars.$bright-blue-hover;
+      }
+    }
+  }
+}
+
+@media all and (min-width: 768px) {
+  .parkingAreaContainer {
+    width: calc(100% - 5rem);
+    height: 15rem;
+    gap: 2.5rem;
+
+    .header {
+      h2 {
+        font-size: 3rem;
+      }
+    }
+
+    .wrapper p {
+      font-size: 2rem;
+    }
+  }
+}

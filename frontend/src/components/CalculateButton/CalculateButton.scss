@@ -1,0 +1,31 @@
+@use "../../variables.scss" as vars;
+
+.calculateButton {
+  position: absolute;
+  top: 1.25rem;
+  right: calc(50% - 9.5rem);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: vars.$bright-green;
+  color: vars.$pure-white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  @media all and (min-width: 768px) {
+    top: 3rem;
+    right: calc(50% - 21.5rem);
+
+    &:hover {
+      background-color: vars.$bright-green-hover-color;
+    }
+  }
+
+  @media all and (min-width: 1152px) {
+    right: calc(50% - 25rem);
+  }
+}

@@ -1,0 +1,81 @@
+@use "../../variables.scss" as vars;
+@use "../../animations.scss" as *;
+
+.newAreaForm {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
+  margin: 1.25rem auto;
+  padding: 1.25rem;
+  font-family: "Roboto", sans-serif;
+  background-color: vars.$secondary-color;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px vars.$shadow-color;
+  animation: fadeIn 0.5s ease-out forwards;
+
+  form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    label {
+      margin: 1rem 0;
+      display: flex;
+      flex-direction: column;
+      font-weight: bold;
+      color: vars.$dark-gray;
+
+      input {
+        margin-top: 0.25rem;
+        padding: 0.5rem;
+        font-size: 1rem;
+        border: 1px solid vars.$input-border;
+        border-radius: 4px;
+        transition: border-color 0.3s, box-shadow 0.3s;
+
+        &:focus {
+          border-color: vars.$bright-blue-hover;
+          box-shadow: 0 0 4px vars.$bright-blue-hover;
+          outline: none;
+        }
+
+        &.error {
+          border-color: vars.$bright-red;
+        }
+      }
+    }
+
+    .error {
+      color: vars.$bright-red;
+      font-size: 0.85rem;
+      margin-top: 0.25rem;
+    }
+
+    .submitButton {
+      margin-top: 1.25rem;
+      padding: 0.8rem;
+      background-color: vars.$bright-blue;
+      color: vars.$pure-white;
+      font-weight: bold;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+
+      &:hover {
+        background-color: vars.$bright-blue-hover;
+        transform: scale(1.05);
+      }
+    }
+
+    .successMessage {
+      color: vars.$success-color;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+      text-align: center;
+    }
+  }
+}

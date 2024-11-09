@@ -1,0 +1,22 @@
+@use '../../variables.scss' as vars;
+
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  width: 2rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: vars.$bright-blue;
+  transition: color 0.3s;
+
+  &:hover {
+    color: vars.$bright-blue-hover;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}

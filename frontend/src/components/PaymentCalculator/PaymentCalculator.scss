@@ -1,0 +1,120 @@
+@use "../../variables.scss" as vars;
+@use "../../animations.scss" as *;
+
+.paymentCalculator {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: vars.$pure-white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px vars.$shadow-color;
+  font-family: "Roboto", sans-serif;
+  color: vars.$dark-gray;
+  transform: translateY(20px);
+  animation: fadeIn .5s ease-out forwards;
+
+  h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: vars.$dark-gray;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: .5rem;
+    font-weight: 600;
+    color: vars.$medium-gray;
+  }
+
+  input[type="date"],
+  input[type="time"],
+  select {
+    width: calc(100% - 1rem);
+    padding: .8rem;
+    margin: .5rem 0 1rem;
+    border: 1px solid vars.$input-border;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: vars.$primary-color;
+    transition: border-color .3s;
+
+    &:focus {
+      outline: none;
+      border-color: vars.$bright-blue-hover;
+      background-color: vars.$pure-white;
+    }
+  }
+
+  input[type="date"],
+  input[type="time"] {
+    width: 17.5rem;
+  }
+
+  select {
+    width: 19.5rem;
+  }
+
+  .error {
+    color: vars.$bright-red;
+    font-size: .9rem;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .submitButton {
+    width: 100%;
+    padding: .8rem;
+    background-color: vars.$bright-blue;
+    color: vars.$pure-white;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color .3s, transform .2s;
+
+    &:hover {
+      background-color: vars.$bright-blue-hover;
+      transform: scale(1.05);
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px vars.$bright-blue-hover;
+    }
+  }
+
+  p {
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 1rem;
+    color: vars.$dark-gray;
+  }
+}
+
+@media all and (min-width: 768px) {
+  .paymentCalculator {
+    form {
+      display: block;
+    }
+
+    input[type="date"],
+    input[type="time"] {
+      max-width: 22.5rem;
+      width: calc(100% - 1rem);
+    }
+
+    select {
+      width: calc(100% - 1rem);
+    }
+  }
+}

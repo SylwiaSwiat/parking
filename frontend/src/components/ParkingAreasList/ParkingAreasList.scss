@@ -1,0 +1,39 @@
+@use "../../variables.scss" as vars;
+
+.parkingAreasListContainer {
+  padding: 1rem;
+  max-width: 90rem;
+  position: relative;
+  
+  h1 {
+    color: vars.$header-color;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    font-family: "Roboto", sans-serif;
+  }
+
+  .parkingAreasList {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media all and (min-width: 768px) {
+  .parkingAreasListContainer {
+    h1 {
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+  }
+}
+
+@media all and (min-width: 1152px) {
+  .parkingAreasListContainer {
+    .parkingAreasList {
+      gap: 4rem;
+    }  
+  }
+}

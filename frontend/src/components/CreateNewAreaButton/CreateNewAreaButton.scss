@@ -1,0 +1,31 @@
+@use "../../variables.scss" as vars;
+
+.circularButton {
+  position: absolute;
+  top: 1.25rem;
+  right: calc(50% - 6.5rem);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: vars.$bright-orange;
+  color: vars.$pure-white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  @media all and (min-width: 768px) {
+    top: 3rem;
+    right: calc(50% - 18.5rem);
+
+    &:hover {
+      background-color: vars.$bright-orange-hover;
+    }  
+  }
+
+  @media all and (min-width: 1152px) {
+    right: calc(50% - 22rem);
+  }
+}
