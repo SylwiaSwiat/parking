@@ -72,9 +72,6 @@ router.get("/parking-areas", async (req, res) => {
   const parkingAreas = await session
     .query({ collection: "ParkingAreas" })
     .all();
-
-  console.log("parkingAreas", parkingAreas);
-
   try {
     const parkingAreas = await session
       .query({ collection: "ParkingAreas" })

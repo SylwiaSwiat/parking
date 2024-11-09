@@ -15,7 +15,6 @@ const PaymentCalculator = () => {
   const [startTime, setStartTime] = useState("");
   const [endDate, setEndDate] = useState("");
   const [endTime, setEndTime] = useState("");
-  const [dayType, setDayType] = useState("weekday");
   const [currency, setCurrency] = useState("EUR");
   const [error, setError] = useState("");
   const [result, setResult] = useState("");
@@ -48,17 +47,12 @@ const PaymentCalculator = () => {
       return;
     }
 
-    if ([6, 0].includes(formattedEndTime.getDay())) {
-      setDayType("weekend");
-    }
-
     setError("");
 
     const paymentData = {
       parkingAreaId: selectedArea,
       startTime: formattedStartTime.toISOString(),
       endTime: formattedEndTime.toISOString(),
-      dayType,
       currency,
     };
 

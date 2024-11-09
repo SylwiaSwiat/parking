@@ -6,29 +6,39 @@ const getExchangeRate = require("../helpers/getExchangeRate");
 router.post("/calculate-payment", async (req, res) => {
   console.log("Received request body:", req.body);
 
-  const {
-    parkingAreaId,
-    startTime,
-    endTime,
-    dayType,
-    currency = "EUR",
-  } = req.body;
+  const { parkingAreaId, startTime, endTime, currency = "EUR" } = req.body;
 
   const session = store.openSession();
+
   try {
     const parkingArea = await session.load(parkingAreaId);
     if (!parkingArea) {
       return res.status(404).json({ error: "Parking area not found" });
     }
 
-    const hourlyRate =
-      dayType === "weekday" ? parkingArea.weekdayRate : parkingArea.weekendRate;
-
     const start = new Date(startTime);
     const end = new Date(endTime);
-    const hoursParked = Math.ceil((end - start) / (1000 * 60 * 60));
 
-    let totalAmount = hoursParked * hourlyRate;
+    const timezoneOffset = start.getTimezoneOffset() * 60 * 1000;
+    let weekdayHours = 0;
+    let weekendHours = 0;
+    for (
+      let i = +start + timezoneOffset, j = +end + timezoneOffset;
+      i < j;
+      i = i + 60 * 60 * 1000
+    ) {
+      const date = new Date(i);
+      if ([0, 6].includes(date.getDay())) {
+        weekendHours += 1;
+      } else {
+        weekdayHours += 1;
+      }
+    }
+
+    let totalAmount =
+      weekdayHours * parkingArea.weekdayRate +
+      weekendHours * parkingArea.weekendRate;
+
     if (parkingArea.discount) {
       totalAmount *= (100 - parkingArea.discount) / 100;
     }
