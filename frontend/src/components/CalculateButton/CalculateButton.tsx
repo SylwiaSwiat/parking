@@ -1,14 +1,17 @@
 import "./CalculateButton.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCreditCard } from "@fortawesome/free-solid-svg-icons/faCreditCard";
+import { useNavigate } from "react-router-dom";
 
 const CalculateButton = () => {
+  const navigate = useNavigate();
   return (
-    <a href="/calculate-payment">
-      <button className="calculateButton">
-        <FontAwesomeIcon icon={faCreditCard} />
-      </button>
-    </a>
+    <button
+      className="calculateButton"
+      onClick={() => navigate("/calculate-payment")}
+    >
+      <FontAwesomeIcon icon={faCreditCard} />
+    </button>
   );
 };
 
