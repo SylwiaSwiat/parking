@@ -28,8 +28,7 @@ const ParkingArea = ({
   const handleParkingAreaDelete = () => {
     axios
       .delete(`/api/parking-areas/${encodeURIComponent(id)}`)
-      .then((res) => {
-        console.log(res.data.message);
+      .then(() => {
         setParkingAreas((prev) => prev.filter((area) => area.id !== id));
       })
       .catch((error) => {

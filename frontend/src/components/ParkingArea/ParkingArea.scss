@@ -10,7 +10,6 @@
   border-radius: 8px;
   max-width: 800px;
   margin: 0 auto;
-  background: vars.$pure-white;
   box-shadow: 0 1px 5px 0 vars.$blue-shadow-color;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -96,7 +95,7 @@
 @media all and (min-width: 768px) {
   .parkingAreaContainer {
     width: calc(100% - 5rem);
-    height: 15rem;
+    min-height: 15rem;
     gap: 2.5rem;
 
     .header {
